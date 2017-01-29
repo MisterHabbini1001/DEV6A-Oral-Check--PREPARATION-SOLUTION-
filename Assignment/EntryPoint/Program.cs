@@ -8,17 +8,9 @@ namespace EntryPoint
 #if WINDOWS || LINUX
   public static class Program
   {
-    static void CrashMe(int n)
-    {
-      Console.Write("Going strong at level " + n + "\r                       ");
-      CrashMe(n + 1);
-    }
-
     [STAThread]
     static void Main()
     {
-      CrashMe(0);
-
       var fullscreen = false;
       read_input:
       switch (Microsoft.VisualBasic.Interaction.InputBox("Which assignment shall run next? (1, 2, 3, 4, or q for quit)", "Choose assignment", VirtualCity.GetInitialValue()))
@@ -47,7 +39,17 @@ namespace EntryPoint
 
     private static IEnumerable<Vector2> SortSpecialBuildingsByDistance(Vector2 house, IEnumerable<Vector2> specialBuildings)
     {
-      return specialBuildings.OrderBy(v => Vector2.Distance(v, house));
+       //return specialBuildings.OrderBy(v => Vector2.Distance(v, house));
+       var sb = specialBuildings.ToList<Vector2>();
+       var sb_middle = sb.Count / 2;
+
+       var left = new List<Vector2>();
+       var right = new List<Vector2>();
+
+       for (int i = 0; i < sb_middle; i++)
+       {
+
+       }
     }
 
     private static IEnumerable<IEnumerable<Vector2>> FindSpecialBuildingsWithinDistanceFromHouse(
